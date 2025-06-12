@@ -15,6 +15,8 @@ namespace ImplementaciónAlgoritmos.UI
         public FrmFloodFill()
         {
             InitializeComponent();
+            this.WindowState = FormWindowState.Maximized;
+            this.FormBorderStyle = FormBorderStyle.None;
         }
     }
 }

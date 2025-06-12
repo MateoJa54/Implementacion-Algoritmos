@@ -15,6 +15,8 @@ namespace ImplementaciónAlgoritmos.UI
         public FrmDda()
         {
             InitializeComponent();
+            this.WindowState = FormWindowState.Maximized;
+            this.FormBorderStyle = FormBorderStyle.None;
         }
     }
 }

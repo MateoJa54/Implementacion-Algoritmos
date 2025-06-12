@@ -15,6 +15,8 @@ namespace ImplementaciónAlgoritmos.UI
         public FrmBresenhamLine()
         {
             InitializeComponent();
+            this.WindowState = FormWindowState.Maximized;
+            this.FormBorderStyle = FormBorderStyle.None;
         }
     }
 }

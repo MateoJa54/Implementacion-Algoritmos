@@ -15,6 +15,8 @@ namespace ImplementaciónAlgoritmos.UI
         public FrmBresenhamCircle()
         {
             InitializeComponent();
+            this.WindowState = FormWindowState.Maximized;
+            this.FormBorderStyle = FormBorderStyle.None;
         }
     }
 }
