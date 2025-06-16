@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ImplementaciónAlgoritmos.UI.Forms;
 
 namespace ImplementaciónAlgoritmos.UI
 {
@@ -51,7 +52,7 @@ namespace ImplementaciónAlgoritmos.UI
 
         private void PicCircle_Click(object sender, EventArgs e)
         {
-            AbrirFormulario<FrmBresenhamCircle>();
+            AbrirFormulario<FrmCircle>();
         }
         private void picBresenham_Click(object sender, EventArgs e)
         {
@@ -70,7 +71,7 @@ namespace ImplementaciónAlgoritmos.UI
 
         private void círculoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            AbrirFormulario<FrmBresenhamCircle>();
+            AbrirFormulario<FrmCircle>();
         }
 
         private void floodFillToolStripMenuItem_Click(object sender, EventArgs e)

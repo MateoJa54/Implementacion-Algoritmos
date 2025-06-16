@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace ImplementaciónAlgoritmos.Core.Interfaces
 {
-    internal class IFillAlgorithm
+    public interface IFillAlgorithm
     {
+        // Compute fill from seed, boundary tester
+        IEnumerable<ImplementaciónAlgoritmos.Core.Models.Pixel> ComputeFill(
+            System.Drawing.Point seed,
+            System.Func<System.Drawing.Point, bool> isBoundary);
     }
 }

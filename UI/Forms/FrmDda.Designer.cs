@@ -41,7 +41,10 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.btnCalculate = new System.Windows.Forms.Button();
+            this.btnClean = new System.Windows.Forms.Button();
+            this.dgvPixels = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.picCanvas)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvPixels)).BeginInit();
             this.SuspendLayout();
             // 
             // picCanvas
@@ -170,12 +173,34 @@
             // btnCalculate
             // 
             this.btnCalculate.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(229)))), ((int)(((byte)(194)))));
+            this.btnCalculate.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCalculate.Location = new System.Drawing.Point(27, 550);
             this.btnCalculate.Name = "btnCalculate";
             this.btnCalculate.Size = new System.Drawing.Size(187, 51);
             this.btnCalculate.TabIndex = 12;
-            this.btnCalculate.Text = "button1";
+            this.btnCalculate.Text = "Calculate";
             this.btnCalculate.UseVisualStyleBackColor = false;
+            this.btnCalculate.Click += new System.EventHandler(this.btnCalculate_Click);
+            // 
+            // btnClean
+            // 
+            this.btnClean.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(235)))), ((int)(((byte)(229)))), ((int)(((byte)(194)))));
+            this.btnClean.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnClean.Location = new System.Drawing.Point(241, 550);
+            this.btnClean.Name = "btnClean";
+            this.btnClean.Size = new System.Drawing.Size(172, 51);
+            this.btnClean.TabIndex = 13;
+            this.btnClean.Text = "Limpiar";
+            this.btnClean.UseVisualStyleBackColor = false;
+            this.btnClean.Click += new System.EventHandler(this.btnClean_Click);
+            // 
+            // dgvPixels
+            // 
+            this.dgvPixels.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvPixels.Location = new System.Drawing.Point(943, 74);
+            this.dgvPixels.Name = "dgvPixels";
+            this.dgvPixels.Size = new System.Drawing.Size(240, 150);
+            this.dgvPixels.TabIndex = 14;
             // 
             // FrmDda
             // 
@@ -183,6 +208,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1195, 675);
+            this.Controls.Add(this.dgvPixels);
+            this.Controls.Add(this.btnClean);
             this.Controls.Add(this.btnCalculate);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
@@ -199,6 +226,7 @@
             this.Name = "FrmDda";
             this.Text = "FrmDda";
             ((System.ComponentModel.ISupportInitialize)(this.picCanvas)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvPixels)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -219,5 +247,7 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Button btnCalculate;
+        private System.Windows.Forms.Button btnClean;
+        private System.Windows.Forms.DataGridView dgvPixels;
     }
 }

@@ -9,30 +9,27 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using ImplementaciónAlgoritmos.UI.Controllers;
 
-namespace ImplementaciónAlgoritmos.UI
+namespace ImplementaciónAlgoritmos.UI.Forms
 {
-    public partial class FrmBresenhamLine : Form
+    public partial class FrmCircle : Form
     {
-        private readonly BresController _controller;
+        private readonly CircleController _controller;
 
-        public FrmBresenhamLine()
+        public FrmCircle()
         {
             InitializeComponent();
-            _controller = new BresController(picCanvas, dgvPixels);
+            _controller = new CircleController(picCanvas, dgvPixels);
         }
 
         private async void btnCalculate_Click(object sender, EventArgs e)
         {
-            if (int.TryParse(txtX0.Text, out int x0) &&
-                int.TryParse(txtY0.Text, out int y0) &&
-                int.TryParse(txtX1.Text, out int x1) &&
-                int.TryParse(txtY1.Text, out int y1))
+            if (int.TryParse(txtRadius.Text, out int r) && r > 0)
             {
-                await _controller.DrawAsync(x0, y0, x1, y1);
+                await _controller.DrawAsync(r);
             }
             else
             {
-                MessageBox.Show("Coordenadas inválidas", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Radio inválido", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

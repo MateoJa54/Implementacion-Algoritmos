@@ -5,64 +5,32 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ImplementaciónAlgoritmos.Core.Interfaces;
+using ImplementaciónAlgoritmos.Core.Models;
 
 namespace ImplementaciónAlgoritmos.Algorithms
 {
-    internal class DdaLineAlgorithm
+    public class DdaLineAlgorithm : IRenderingAlgorithm
     {
-        private float xInicio, yInicio, xFinal, yFinal;
-        private List<PointF> puntos;
-        private Graphics mGraph;
-        private Pen mPenPunto;
-
-        public DdaLineAlgorithm()
+        public IEnumerable<Pixel> Compute(params object[] parameters)
         {
-            puntos = new List<PointF>();
-            mPenPunto = new Pen(Color.Red, 2);
-        }
+            var start = (Point)parameters[0];
+            var end = (Point)parameters[1];
 
-        public void ReadData(TextBox txtX0, TextBox txtY0, TextBox txtX1, TextBox txtY1)
-        {
-            if (!float.TryParse(txtX0.Text, out xInicio) ||
-                !float.TryParse(txtY0.Text, out yInicio) ||
-                !float.TryParse(txtX1.Text, out xFinal) ||
-                !float.TryParse(txtY1.Text, out yFinal))
-            {
-                MessageBox.Show("Coordenadas inválidas", "Error",
-                                MessageBoxButtons.OK, MessageBoxIcon.Error);
-                txtX0.Focus();
-            }
-        }
+            float x0 = start.X, y0 = start.Y;
+            float x1 = end.X, y1 = end.Y;
+            var puntos = new List<PointF>();
 
-        public void InitializeData(TextBox txtX0, TextBox txtY0, TextBox txtX1, TextBox txtY1, PictureBox picCanvas)
-        {
-            puntos.Clear();
-            txtX0.Clear();
-            txtY0.Clear();
-            txtX1.Clear();
-            txtY1.Clear();
-            picCanvas.Refresh();
-        }
-
-        public void PlotShape(PictureBox picCanvas)
-        {
-            mGraph = picCanvas.CreateGraphics();
-            puntos.Clear();
-
-            float dx = xFinal - xInicio;
-            float dy = yFinal - yInicio;
-            float m = (dx != 0) ? dy / dx : float.MaxValue;
-
-            float x = xInicio;
-            float y = yInicio;
+            float dx = x1 - x0, dy = y1 - y0;
+            float m = dx != 0 ? dy / dx : float.MaxValue;
+            float x = x0, y = y0;
             puntos.Add(new PointF(x, y));
 
             if (Math.Abs(m) <= 1)
             {
-                float xInc = (dx > 0 ? 1 : -1);
+                float xInc = Math.Sign(dx);
                 float yInc = m * xInc;
                 int pasos = (int)Math.Abs(dx);
-
                 for (int i = 0; i < pasos; i++)
                 {
                     x += xInc;
@@ -72,10 +40,9 @@ namespace ImplementaciónAlgoritmos.Algorithms
             }
             else
             {
-                float yInc = (dy > 0 ? 1 : -1);
-                float xInc = (dx != 0) ? (1 / m) * yInc : 0;
+                float yInc = Math.Sign(dy);
+                float xInc = m != 0 ? (1 / m) * yInc : 0;
                 int pasos = (int)Math.Abs(dy);
-
                 for (int i = 0; i < pasos; i++)
                 {
                     x += xInc;
@@ -84,15 +51,10 @@ namespace ImplementaciónAlgoritmos.Algorithms
                 }
             }
 
-            float cx = picCanvas.Width / 2f;
-            float cy = picCanvas.Height / 2f;
-
-            foreach (PointF p in puntos)
-            {
-                float px = cx + p.X;
-                float py = cy - p.Y;
-                mGraph.FillEllipse(mPenPunto.Brush, px, py, 2, 2);
-            }
+            // Ahora convertimos esos PointF en Pixel (sin dibujar)
+            return puntos
+                .Select(p => new Pixel((int)Math.Round(p.X), (int)Math.Round(p.Y), Color.Red))
+                .ToList();
         }
     }
 }
