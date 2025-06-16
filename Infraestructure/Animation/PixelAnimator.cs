@@ -11,15 +11,19 @@ namespace ImplementaciónAlgoritmos.Infraestructure.Animation
     {
         public event Action<Pixel> OnPixelLit;
 
-        public async Task AnimateAsync(
-            IEnumerable<Pixel> pixels,
-            int delayMs)
+        public async Task AnimateAsync(IEnumerable<Pixel> pixels, int delayMs)
         {
             foreach (var p in pixels)
             {
+                // Sigue disparando desde aquí
                 OnPixelLit?.Invoke(p);
                 await Task.Delay(delayMs);
             }
+        }
+
+        public void PublishPixel(Pixel p)
+        {
+            OnPixelLit?.Invoke(p);
         }
     }
 }
